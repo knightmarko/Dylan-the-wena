@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Dylan The Wena</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,18..144,400;0,18..144,500;1,18..144,400&display=swap');
+
+  :root{
+    --bg-deep:#1B1E38;
+    --bg-card:#262A4D;
+    --bg-card-edge:#33375E;
+    --accent-amber:#F0A868;
+    --accent-bloom:#E8A9C4;
+    --text-cream:#F5EFE6;
+    --text-muted:#A6A2C4;
+    --stem-green:#7FA66B;
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{
+    margin:0;
+    padding:0;
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(240,168,104,0.10), transparent 55%),
+      radial-gradient(ellipse at 85% 110%, rgba(232,169,196,0.08), transparent 55%),
+      var(--bg-deep);
+    font-family:'Literata', serif;
+    color:var(--text-cream);
+  }
+
+  body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    padding:8vh 6vw;
+    gap:clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 10% 20%, rgba(245,239,230,0.5), transparent),
+      radial-gradient(1.5px 1.5px at 80% 15%, rgba(245,239,230,0.4), transparent),
+      radial-gradient(1px 1px at 60% 70%, rgba(245,239,230,0.35), transparent),
+      radial-gradient(1px 1px at 30% 85%, rgba(245,239,230,0.4), transparent),
+      radial-gradient(1.5px 1.5px at 90% 60%, rgba(245,239,230,0.3), transparent),
+      radial-gradient(1px 1px at 45% 35%, rgba(245,239,230,0.3), transparent);
+    background-repeat:no-repeat;
+  }
+
+  header{
+    text-align:center;
+    max-width:36rem;
+  }
+
+  .eyebrow-top{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:0.75rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--accent-amber);
+    margin:0 0 0.9rem;
+    opacity:0.85;
+  }
+
+  h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(2rem, 5vw, 3rem);
+    line-height:1.15;
+    margin:0 0 0.75rem;
+    letter-spacing:-0.01em;
+  }
+
+  header p{
+    font-family:'Literata', serif;
+    font-style:italic;
+    color:var(--text-muted);
+    font-size:clamp(0.95rem, 2vw, 1.1rem);
+    margin:0;
+  }
+
+  .stage{
+    display:flex;
+    align-items:center;
+    gap:clamp(0.75rem, 3vw, 2rem);
+    width:100%;
+    max-width:44rem;
+  }
+
+  .nav-btn{
+    flex:0 0 auto;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    border:1px solid var(--bg-card-edge);
+    background:rgba(38,42,77,0.6);
+    color:var(--text-cream);
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+
+  .nav-btn:hover{
+    border-color:var(--accent-amber);
+    background:rgba(240,168,104,0.12);
+  }
+
+  .nav-btn:active{ transform:scale(0.94); }
+
+  .nav-btn svg{ width:18px; height:18px; }
+
+  .nav-btn:focus-visible{
+    outline:2px solid var(--accent-amber);
+    outline-offset:2px;
+  }
+
+  .card-wrap{
+    position:relative;
+    flex:1 1 auto;
+    min-width:0;
+  }
+
+  .card{
+    position:relative;
+    background:linear-gradient(165deg, var(--bg-card), #20233f);
+    border:1px solid var(--bg-card-edge);
+    border-radius:20px;
+    padding:clamp(2rem, 5vw, 3rem) clamp(1.75rem, 5vw, 3rem);
+    min-height:14rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    box-shadow:0 20px 50px -20px rgba(0,0,0,0.5);
+    overflow:hidden;
+  }
+
+  .card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 15% 0%, rgba(240,168,104,0.08), transparent 45%);
+    pointer-events:none;
+  }
+
+  .card-eyebrow{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:0.7rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    margin:0 0 1rem;
+    transition:color 0.3s ease;
+  }
+
+  .card-eyebrow.appreciation{ color:var(--accent-amber); }
+  .card-eyebrow.encouragement{ color:var(--accent-bloom); }
+
+  .quote{
+    font-size:clamp(1.2rem, 3vw, 1.6rem);
+    line-height:1.5;
+    margin:0;
+    color:var(--text-cream);
+  }
+
+  .counter{
+    position:absolute;
+    bottom:1.1rem;
+    right:1.4rem;
+    font-family:'Space Grotesk', sans-serif;
+    font-size:0.75rem;
+    color:var(--text-muted);
+    letter-spacing:0.05em;
+  }
+
+  .plant{
+    position:absolute;
+    bottom:0;
+    left:1.4rem;
+    width:34px;
+    height:56px;
+    pointer-events:none;
+  }
+
+  .plant .stem{
+    position:absolute;
+    bottom:0;
+    left:15px;
+    width:3px;
+    background:var(--stem-green);
+    border-radius:2px;
+    height:6px;
+    transition:height 0.6s ease;
+  }
+
+  .plant .leaf{
+    position:absolute;
+    width:14px;
+    height:9px;
+    background:var(--stem-green);
+    border-radius:0 60% 0 60%;
+    opacity:0;
+    transform:scale(0.4);
+    transition:opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .plant .leaf.left{ left:2px; border-radius:60% 0 60% 0; }
+  .plant .leaf.right{ left:19px; }
+
+  .plant .bud{
+    position:absolute;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--accent-bloom);
+    opacity:0;
+    transform:scale(0.3);
+    transition:opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  @media (max-width:560px){
+    .stage{ gap:0.6rem; }
+    .nav-btn{ width:38px; height:38px; }
+    .plant{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+
+  footer{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:0.75rem;
+    color:var(--text-muted);
+    opacity:0.6;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<header>
+  <p class="eyebrow-top">a small save file, just for you</p>
+  <h1>For Dylan The Wena</h1>
+  <p>Flip through whenever you need reminding.</p>
+</header>
+
+<div class="stage">
+  <button class="nav-btn" id="prevBtn" aria-label="Previous card">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+  </button>
+
+  <div class="card-wrap">
+    <div class="card" id="card">
+      <p class="card-eyebrow" id="eyebrow">APPRECIATION</p>
+      <p class="quote" id="quoteText"></p>
+      <div class="plant" id="plant">
+        <div class="stem" id="stem"></div>
+        <div class="leaf left" id="leafLeft"></div>
+        <div class="leaf right" id="leafRight"></div>
+        <div class="bud" id="bud"></div>
+      </div>
+      <p class="counter" id="counter"></p>
+    </div>
+  </div>
+
+  <button class="nav-btn" id="nextBtn" aria-label="Next card">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+  </button>
+</div>
+
+<footer>use the arrow keys, or tap the arrows</footer>
+
+<script>
+  const cards = [
+    { type: 'appreciation', text: "I have a paid-off car. I am doing good." },
+    { type: 'appreciation', text: "I have a girlfriend who loves me, and I get to marry her soon." },
+    { type: 'encouragement', text: "You're carrying a wedding, your brother's tuition, and a job that drains you \u2014 and you're still showing up. That's not nothing." },
+    { type: 'appreciation', text: "I have friends I can be completely ridiculous with." },
+    { type: 'encouragement', text: "Feeling stuck right now doesn't mean you are stuck. You're already building the exit, one lesson at a time." },
+    { type: 'appreciation', text: "I have a bed, a stack of shows, and nowhere I have to be." },
+    { type: 'encouragement', text: "Every hour you put into learning IT is an hour your future self will thank you for." },
+    { type: 'appreciation', text: "I have a job with an income that supports what I need." },
+    { type: 'encouragement', text: "The right job is still out there. Keep applying, keep learning \u2014 it's closer than it feels." },
+    { type: 'appreciation', text: "I am getting married soon. I cannot wait." },
+    { type: 'encouragement', text: "You've always been the guy everyone likes and leans on. Let this be your reminder \u2014 someone's rooting for you too." },
+    { type: 'encouragement', text: "One save point at a time. You don't have to figure out the whole map today." }
+  ];
+
+  let index = 0;
+  const quoteText = document.getElementById('quoteText');
+  const eyebrow = document.getElementById('eyebrow');
+  const counter = document.getElementById('counter');
+  const card = document.getElementById('card');
+  const stem = document.getElementById('stem');
+  const leafLeft = document.getElementById('leafLeft');
+  const leafRight = document.getElementById('leafRight');
+  const bud = document.getElementById('bud');
+
+  function render(){
+    const item = cards[index];
+    quoteText.textContent = item.text;
+    eyebrow.textContent = item.type === 'appreciation' ? 'Appreciation' : 'Encouragement';
+    eyebrow.className = 'card-eyebrow ' + item.type;
+    counter.textContent = (index + 1) + ' / ' + cards.length;
+
+    const progress = (index + 1) / cards.length;
+    stem.style.height = (6 + progress * 40) + 'px';
+
+    leafLeft.style.bottom = (10 + progress * 30) + 'px';
+    leafRight.style.bottom = (16 + progress * 30) + 'px';
+    bud.style.left = '10px';
+    bud.style.bottom = (6 + progress * 40) + 'px';
+
+    if(progress > 0.25){
+      leafLeft.style.opacity = 1;
+      leafLeft.style.transform = 'scale(1)';
+    } else {
+      leafLeft.style.opacity = 0;
+      leafLeft.style.transform = 'scale(0.4)';
+    }
+
+    if(progress > 0.55){
+      leafRight.style.opacity = 1;
+      leafRight.style.transform = 'scale(1)';
+    } else {
+      leafRight.style.opacity = 0;
+      leafRight.style.transform = 'scale(0.4)';
+    }
+
+    if(progress > 0.85){
+      bud.style.opacity = 1;
+      bud.style.transform = 'scale(1)';
+    } else {
+      bud.style.opacity = 0;
+      bud.style.transform = 'scale(0.3)';
+    }
+
+    card.animate(
+      [{ opacity: 0.3, transform: 'translateY(4px)' }, { opacity: 1, transform: 'translateY(0)' }],
+      { duration: 260, easing: 'ease-out' }
+    );
+  }
+
+  function next(){ index = (index + 1) % cards.length; render(); }
+  function prev(){ index = (index - 1 + cards.length) % cards.length; render(); }
+
+  document.getElementById('nextBtn').addEventListener('click', next);
+  document.getElementById('prevBtn').addEventListener('click', prev);
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'ArrowRight') next();
+    if(e.key === 'ArrowLeft') prev();
+  });
+
+  let touchStartX = null;
+  const stage = document.querySelector('.stage');
+  stage.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, {passive:true});
+  stage.addEventListener('touchend', (e) => {
+    if(touchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if(dx > 40) prev();
+    if(dx < -40) next();
+    touchStartX = null;
+  }, {passive:true});
+
+  render();
+</script>
+
+</body>
+</html>
