@@ -8,13 +8,13 @@
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,18..144,400;0,18..144,500;1,18..144,400&display=swap');
 
   :root{
-    --bg-deep:#1B1E38;
-    --bg-card:#262A4D;
-    --bg-card-edge:#33375E;
-    --accent-amber:#F0A868;
-    --accent-bloom:#E8A9C4;
-    --text-cream:#F5EFE6;
-    --text-muted:#A6A2C4;
+    --bg-deep:#210D0F;
+    --bg-card:#3A1417;
+    --bg-card-edge:#5C2429;
+    --accent-amber:#E4572E;
+    --accent-bloom:#D64550;
+    --text-cream:#F7ECE9;
+    --text-muted:#C29A98;
     --stem-green:#7FA66B;
   }
 
@@ -25,8 +25,8 @@
     padding:0;
     min-height:100vh;
     background:
-      radial-gradient(ellipse at 20% -10%, rgba(240,168,104,0.10), transparent 55%),
-      radial-gradient(ellipse at 85% 110%, rgba(232,169,196,0.08), transparent 55%),
+      radial-gradient(ellipse at 20% -10%, rgba(228,87,46,0.14), transparent 55%),
+      radial-gradient(ellipse at 85% 110%, rgba(214,69,80,0.10), transparent 55%),
       var(--bg-deep);
     font-family:'Literata', serif;
     color:var(--text-cream);
@@ -150,7 +150,7 @@
     content:"";
     position:absolute;
     inset:0;
-    background:radial-gradient(circle at 15% 0%, rgba(240,168,104,0.08), transparent 45%);
+    background:radial-gradient(circle at 15% 0%, rgba(228,87,46,0.10), transparent 45%);
     pointer-events:none;
   }
 
@@ -171,16 +171,6 @@
     line-height:1.5;
     margin:0;
     color:var(--text-cream);
-  }
-
-  .counter{
-    position:absolute;
-    bottom:1.1rem;
-    right:1.4rem;
-    font-family:'Space Grotesk', sans-serif;
-    font-size:0.75rem;
-    color:var(--text-muted);
-    letter-spacing:0.05em;
   }
 
   .plant{
@@ -229,9 +219,18 @@
   }
 
   @media (max-width:560px){
-    .stage{ gap:0.6rem; }
+    body{ padding:6vh 4vw; gap:1.75rem; }
+    .stage{ gap:0.5rem; }
     .nav-btn{ width:38px; height:38px; }
+    .nav-btn svg{ width:16px; height:16px; }
+    .card{ min-height:11rem; padding:1.75rem 1.25rem; border-radius:16px; }
     .plant{ display:none; }
+  }
+
+  @media (max-width:380px){
+    h1{ font-size:1.6rem; }
+    .quote{ font-size:1.05rem; }
+    .nav-btn{ width:34px; height:34px; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -252,8 +251,8 @@
 <div class="stars"></div>
 
 <header>
-  <p class="eyebrow-top">a small save file, just for you</p>
   <h1>For Dylan The Wena</h1>
+  <p class="eyebrow-top">Work sucks, I know, but...</p>
   <p>Flip through whenever you need reminding.</p>
 </header>
 
@@ -272,7 +271,6 @@
         <div class="leaf right" id="leafRight"></div>
         <div class="bud" id="bud"></div>
       </div>
-      <p class="counter" id="counter"></p>
     </div>
   </div>
 
@@ -296,13 +294,34 @@
     { type: 'encouragement', text: "The right job is still out there. Keep applying, keep learning \u2014 it's closer than it feels." },
     { type: 'appreciation', text: "I am getting married soon. I cannot wait." },
     { type: 'encouragement', text: "You've always been the guy everyone likes and leans on. Let this be your reminder \u2014 someone's rooting for you too." },
-    { type: 'encouragement', text: "One save point at a time. You don't have to figure out the whole map today." }
+    { type: 'encouragement', text: "One save point at a time. You don't have to figure out the whole map today." },
+    { type: 'appreciation', text: "I have hobbies that pull me in \u2014 a car to tinker with, a farm to tend, a map to explore." },
+    { type: 'appreciation', text: "I have shows and anime lined up for whenever I need to switch my brain off." },
+    { type: 'appreciation', text: "I still make it to church, even on the tired Sundays." },
+    { type: 'appreciation', text: "I know how to fix things. Cars, plans, whatever's broken \u2014 I figure it out." },
+    { type: 'appreciation', text: "I make people laugh. That's not a small thing." },
+    { type: 'appreciation', text: "I have people who'd show up for me without a second thought." },
+    { type: 'encouragement', text: "Overwhelmed doesn't mean failing. It means you're carrying a lot, and you're still carrying it." },
+    { type: 'encouragement', text: "A rough week at work is not a verdict on your worth." },
+    { type: 'encouragement', text: "You've rebuilt an engine from scratch. Rebuilding a career is the same instinct, different tools." },
+    { type: 'encouragement', text: "It's okay to not enjoy the job you're in while you work toward the one you'll actually want." },
+    { type: 'encouragement', text: "Saving for a wedding and helping your brother through uni at the same time \u2014 that's real love, twice over." },
+    { type: 'encouragement', text: "You don't need to have it all figured out today. You just need today's next step." },
+    { type: 'encouragement', text: "The version of you that's good with computers and good with people is rare. IT would be lucky to have you." },
+    { type: 'encouragement', text: "Rest is not the same as giving up. Watching one more episode is allowed." },
+    { type: 'encouragement', text: "You are allowed to outgrow a job without it meaning anything bad about you." },
+    { type: 'appreciation', text: "Small, quiet days count too \u2014 not everything has to be a big win." },
+    { type: 'encouragement', text: "Every application, every course, every late-night tutorial \u2014 it's compounding, even when it doesn't feel like it." },
+    { type: 'encouragement', text: "You've been someone's steady person for a long time. It's okay to lean on people too." },
+    { type: 'appreciation', text: "You've built a life with actual good things in it, even in a hard season." },
+    { type: 'encouragement', text: "Progress in a farming game and progress in real life look the same: mostly boring, occasionally huge." },
+    { type: 'encouragement', text: "The plan doesn't have to be perfect. It just has to move." },
+    { type: 'appreciation', text: "You are further along than you were a year ago, even on days it doesn't feel like it." }
   ];
 
   let index = 0;
   const quoteText = document.getElementById('quoteText');
   const eyebrow = document.getElementById('eyebrow');
-  const counter = document.getElementById('counter');
   const card = document.getElementById('card');
   const stem = document.getElementById('stem');
   const leafLeft = document.getElementById('leafLeft');
@@ -314,7 +333,6 @@
     quoteText.textContent = item.text;
     eyebrow.textContent = item.type === 'appreciation' ? 'Appreciation' : 'Encouragement';
     eyebrow.className = 'card-eyebrow ' + item.type;
-    counter.textContent = (index + 1) + ' / ' + cards.length;
 
     const progress = (index + 1) / cards.length;
     stem.style.height = (6 + progress * 40) + 'px';
